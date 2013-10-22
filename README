@@ -1,0 +1,30 @@
+FIO Api v1.0
+------------
+
+Třída pro načítání dat z banky FIO na základě specifikace http://www.fio.cz/docs/cz/API_Bankovnictvi.pdf
+
+Trida umi pouze cteni, neumi zapisovaci tokeny.
+
+Pro pouziti je zapotrebi:
+
+a) PHP 5.3
+b) povolene fopen na url
+c) nainstalovany json doplnek PHP
+d) v bankovnictvi FIO mit vygenerovany token (zalozka Prehledy -> informace o uctu)
+
+Priklad uziti je v souboru test.php, struktura dat je popsana primo u funkce getData.
+Mezi spustenimi skriptu je vhodne zaradit nekolikaminutovou mezeru, aby vas FIO 
+neodrizlo.
+
+FIO si pro kazdy token pamatuje casovou znacku posledniho stazeni dat. Ta lze 
+nastavit na libovolne datum pomoci funkce reset. Funkce getData pak stahne data
+pro prislusny ucet od dane casove znacky.
+
+Typicke vyuziti tedy vypada tak, ze nekde mame ulozene tokeny ke vsem svym uctum,
+pro kazdy ucet vytvorime vlastni FioApi objekt a zavolame na nem getData, ktere
+zpracujeme. Skript se pak da jednoduse hodit do cron, napr. s petiminutovou 
+periodou.
+
+Happy hacking,
+
+  Michal Tulacek
